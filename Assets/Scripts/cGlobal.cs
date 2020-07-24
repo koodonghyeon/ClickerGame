@@ -16,3 +16,11 @@ public enum UnitState
     Die,
     Max
 }
+public enum BattleState
+{
+    None,
+    BattleReady,
+    Battle,
+    BattleResult,
+    Max,
+}

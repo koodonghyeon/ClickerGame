@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class cEnemy : MonoBehaviour
 {
@@ -9,9 +9,9 @@ public class cEnemy : MonoBehaviour
     Transform _Transform;
     int _currHp;
     int _maxHp;
-    public Slider _hpBar;
     cEnemyShaking _Shake;
-
+    cHitShader _Shader;
+    Material _material;
     public int currHp
     {
         get { return _currHp; }
@@ -25,20 +25,34 @@ public class cEnemy : MonoBehaviour
     private void Awake()
     {
         _Transform = transform;
-        _currHp = 100;
-        _maxHp = 100;
+        
         _Shake = gameObject.AddComponent<cEnemyShaking>();
         _Shake.Init(_model);
+        _Shader = gameObject.AddComponent<cHitShader>();
+        _Shader.SetOwner(_model.transform);
+        _material = _model.GetComponent<Renderer>().material;
+    }
+    public void Init()
+    {
+        _currHp = 100;
+        _maxHp = 100;
+        //int enemyRandomValue = Random.Range(1, 10);
+
+        //_material.mainTexture = (Texture2D)Resources.Load(string.Format("Texture/Enemy/Enemy{0}", 1), typeof(Texture2D));
     }
     public void SetDamage(int damage)
     {
+        _currHp -= damage;
         if (_currHp <= 0)
         {
-            return;
+            _currHp = 0;
+            cGameScene.Instance.battleStateManager.SetState(BattleState.BattleResult);
+           
         }
-        _currHp -= damage;
-        _hpBar.value = (float)_currHp / (float)_maxHp;
-        _Shake.SetShaking(3, 0.3f);
+       
+        _Shake.SetShaking(2, 0.2f);
+        _Shader.SetRimColor(Color.red);
+        cGameScene.Instance._HPBar.value = (float)_currHp / (float)_maxHp;
     }
 
     public Transform myTransform
