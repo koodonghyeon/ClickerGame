@@ -7,21 +7,25 @@ public class cEnemy : MonoBehaviour
 {
     public GameObject _model;
     Transform _Transform;
-    int _currHp;
-    int _maxHp;
+    float _currHp=100;
+
+    float _maxHp=100;
     cEnemyShaking _Shake;
     cHitShader _Shader;
     Material _material;
-    public int currHp
+   public GameObject _DamageText;
+    public float currHp
     {
         get { return _currHp; }
         set { _currHp = value; }
     }
-    public int maxHp
+    public float maxHp
     {
         get { return _maxHp; }
         set {_maxHp = value; }
     }
+    DelegateEndHide _hide;
+    bool _Die;
     private void Awake()
     {
         _Transform = transform;
@@ -31,30 +35,53 @@ public class cEnemy : MonoBehaviour
         _Shader = gameObject.AddComponent<cHitShader>();
         _Shader.SetOwner(_model.transform);
         _material = _model.GetComponent<Renderer>().material;
+
     }
     public void Init()
     {
-        _currHp = 100;
-        _maxHp = 100;
-        //int enemyRandomValue = Random.Range(1, 10);
-
-        //_material.mainTexture = (Texture2D)Resources.Load(string.Format("Texture/Enemy/Enemy{0}", 1), typeof(Texture2D));
+        if (cGameInfo.Instance.gameData.saveData.currStageIndex % 5 == 0)
+        {
+            cGameInfo.Instance.gameData.saveData.SaveMaxHP *= 5;
+          
+        }
+        else
+        {
+            cGameInfo.Instance.gameData.saveData.SaveMaxHP += 20;
+        }
+        _maxHp = cGameInfo.Instance.gameData.saveData.SaveMaxHP;
+        _currHp = _maxHp;
+        cGameScene.Instance._hptext.text = _currHp.ToString();
+        cGameScene.Instance._HPBar.value = 1;
+        _hide = new DelegateEndHide(EndHide);
     }
     public void SetDamage(int damage)
     {
+        if (_Die)
+            return;
         _currHp -= damage;
-        if (_currHp <= 0)
-        {
-            _currHp = 0;
-            cGameScene.Instance.battleStateManager.SetState(BattleState.BattleResult);
-           
-        }
+ 
        
         _Shake.SetShaking(2, 0.2f);
         _Shader.SetRimColor(Color.red);
+        cSoundManager.Instance.PlayActionSound("Peok");
         cGameScene.Instance._HPBar.value = (float)_currHp / (float)_maxHp;
-    }
+        cGameScene.Instance._hptext.text = _currHp.ToString();
+        GameObject DamText = Instantiate(_DamageText);
+        DamText.GetComponent<cDamageText>().damage = damage;
+        if (_currHp <= 0)
+        {
+            _currHp = 0;
+            _Die = true;
+            cSoundManager.Instance.PlayActionSound("Dead");
+            _Shader.Hide(_hide);
+            cGameInfo.Instance.gameData.VictoryStage();
 
+        }
+    }
+    public void EndHide()
+    {
+        cGameScene.Instance.battleStateManager.SetState(BattleState.BattleResult);
+    }
     public Transform myTransform
     {
         get { return _Transform; }

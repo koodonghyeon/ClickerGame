@@ -2,15 +2,17 @@
 using System.Collections;
 using System.Collections.Generic;
 
+public delegate void DelegateEndHide();
 public class cHitShader : MonoBehaviour
 {
     bool _activeRimPower;
-
+    bool _activeHide;
     Transform _owner;
-
     float _power;
-
     List<Renderer> _rendererList = new List<Renderer>();
+
+    DelegateEndHide _delegateHide;
+    float _alpha;
     public void SetOwner(Transform owner)
     {
         _owner = owner;
@@ -23,9 +25,16 @@ public class cHitShader : MonoBehaviour
         RimColor(_owner, color);
         _activeRimPower = true;
     }
+    public void Hide(DelegateEndHide delegateHide)
+    {
+        _delegateHide = delegateHide;
+        _alpha = 1;
+        _activeHide = true;
+    }
     void Update()
     {
         ProcessRimPower();
+        ProcessHide();
     }
     void ProcessRimPower()
     {
@@ -41,9 +50,21 @@ public class cHitShader : MonoBehaviour
         }
         RimPower(_owner);
     }
-
-
-
+    void ProcessHide()
+    {
+        if (_activeHide == false)
+            return;
+        if (_owner == null)
+            return;
+        _alpha -= Time.deltaTime * 2;
+        if (_alpha <= 0)
+        {
+           _alpha = 0;
+           _activeHide = false;
+           _delegateHide();
+        }
+        Alpha(_owner);
+    }
     void RimPower(Transform owner)
     { 
         for (int i = 0; i < _rendererList.Count; ++i)
@@ -62,9 +83,13 @@ public class cHitShader : MonoBehaviour
         }
 
     }
-
-
-
+    void Alpha(Transform owner)
+    {
+        for (int i = 0; i < _rendererList.Count; ++i)
+        {
+            _rendererList[i].material.SetFloat("_Alpha", _alpha);
+        }
+    }
     void CollectRenderer(GameObject owner)
     {
         Renderer renderer = owner.gameObject.GetComponent<Renderer>();

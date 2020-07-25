@@ -1,5 +1,4 @@
-﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
-
+﻿
 Shader "Custom/EnemyHit"
 {
 	Properties
@@ -7,6 +6,7 @@ Shader "Custom/EnemyHit"
 		_MainTex ("Base (RGB)", 2D) = "white" {}		
 		_RimColor ("Rim Color", Color) = (1,1,1,0.0)
 		_RimPower ("Rim Power", Range(0.0,1)) = 0.0
+	    _Alpha("Alpha", Range(0.0,1)) = 1.0
 	}
 
 	SubShader
@@ -40,7 +40,7 @@ Shader "Custom/EnemyHit"
 			float4 _MainTex_ST;
 			float4 _RimColor;
 			float _RimPower;
-			
+			float _Alpha;
 			v2f vert (appdata_t v)
 			{
 				v2f o;				
@@ -56,6 +56,8 @@ Shader "Custom/EnemyHit"
 				half rim = 1.0;
 				float3 rimColor = _RimColor.rgb * (rim * _RimPower);
 				col.rgb += rimColor.rgb;
+
+				col.a *= _Alpha;
 
 				return col;
 			}

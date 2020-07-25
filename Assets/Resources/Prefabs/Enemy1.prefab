@@ -113,7 +113,7 @@ GameObject:
   - component: {fileID: 4084367132730262099}
   - component: {fileID: 4084367132730262098}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Enemy1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -147,4 +147,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _model: {fileID: 4084367131115953556}
-  _hpBar: {fileID: 0}
+  _DamageText: {fileID: 7219487285132675864, guid: 73aff39745fc73e49b59abb694e40dd3,
+    type: 3}

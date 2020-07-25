@@ -11,7 +11,7 @@ public static class cDontDestroy
         if (null == noRemoveManager)
         {
             noRemoveManager = new GameObject("NoRemoveManager");
-            MonoBehaviour.DontDestroyOnLoad(noRemoveManager);
+            Object.DontDestroyOnLoad(noRemoveManager);
         }
         if (null == noRemoveManager.GetComponent<MonoBehaviour>())
         {
@@ -20,6 +20,14 @@ public static class cDontDestroy
         if (null == noRemoveManager.GetComponent<cResourceManager>())
        {
             noRemoveManager.AddComponent<cResourceManager>();
+        }
+        if (null == noRemoveManager.GetComponent<cSoundManager>())
+        {
+            noRemoveManager.AddComponent<cSoundManager>();
+        }
+        if (null == noRemoveManager.GetComponent<cGameInfo>())
+        {
+            noRemoveManager.AddComponent<cGameInfo>();
         }
     }
     static public void CreateInstanceToString<T>(ref T instance, string classMame)

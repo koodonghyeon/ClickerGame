@@ -26,16 +26,22 @@ public class cGameScene : MonoBehaviour
         get { return _battleStateManager; }
     }
     public Slider _HPBar;
+    public Text _hptext;
+    public int _PlayerDamage;
+    public Text _StageText;
     public void Awake()
     {
         instance = this;
+        _character.Init();
+        _character.SetState(UnitState.Idle);
+
         _battleStateManager = new cBattleManager();
         _battleStateManager.Init();
         _battleStateManager.SetState(BattleState.BattleReady);
 
-        _character.Init();
-        _character.SetState(UnitState.Idle);
+    
         _Main = this.GetComponent<Camera>();
+        _PlayerDamage = 5;
     }
     public void Update()
     {
@@ -55,7 +61,7 @@ public class cGameScene : MonoBehaviour
     {
         if (_enemy == null)
             return;
-        _enemy.SetDamage(10);
+        _enemy.SetDamage(_PlayerDamage);
        // Debug.Log(pos);
         Vector3 worldPos = _Main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 0));
         GameObject effectObject = cResourceManager.Instance.ClonePrefab("Hit");
