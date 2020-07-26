@@ -39,6 +39,8 @@ public class cEnemy : MonoBehaviour
     }
     public void Init()
     {
+        int currStageIndex = cGameInfo.Instance.gameData.saveData.currStageIndex;
+
         if (cGameInfo.Instance.gameData.saveData.currStageIndex % 5 == 0)
         {
             cGameInfo.Instance.gameData.saveData.SaveMaxHP *= 5;
@@ -75,7 +77,7 @@ public class cEnemy : MonoBehaviour
             cSoundManager.Instance.PlayActionSound("Dead");
             _Shader.Hide(_hide);
             cGameInfo.Instance.gameData.VictoryStage();
-
+            cDropManager.Instance.DropGold(this);
         }
     }
     public void EndHide()

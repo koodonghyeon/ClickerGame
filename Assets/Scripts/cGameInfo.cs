@@ -16,6 +16,20 @@ public class cGameInfo : MonoBehaviour
     bool _sycnSaveData;
 
     cGameData _gameData = new cGameData();
+    cInvenData _invenData = new cInvenData();
+    public bool syncSaveData
+    {
+        get { return _sycnSaveData; }
+    }
+    public cGameData gameData
+    {
+        get { return _gameData; }
+    }
+    public cInvenData invenData
+    {
+        get { return _invenData; }
+    }
+
     public void FirstSetting()
     {
         _gameData.FirstSetting();
@@ -30,14 +44,7 @@ public class cGameInfo : MonoBehaviour
         PlayerPrefs.DeleteAll();
         _sycnSaveData = false;
     }
-    public bool syncSaveData
-    {
-        get { return _sycnSaveData; }
-    }
-    public cGameData gameData
-    {
-        get { return _gameData; }
-    }
+
 
  
 }

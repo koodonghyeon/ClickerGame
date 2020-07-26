@@ -29,6 +29,7 @@ public class cGameScene : MonoBehaviour
     public Text _hptext;
     public int _PlayerDamage;
     public Text _StageText;
+    public Text _GoldText;
     public void Awake()
     {
         instance = this;
@@ -39,9 +40,9 @@ public class cGameScene : MonoBehaviour
         _battleStateManager.Init();
         _battleStateManager.SetState(BattleState.BattleReady);
 
-    
         _Main = this.GetComponent<Camera>();
         _PlayerDamage = 5;
+        Refresh();
     }
     public void Update()
     {
@@ -74,4 +75,14 @@ public class cGameScene : MonoBehaviour
         _enemy.SetDamage(attack);
 
     }
+    public void Refresh()
+    {
+        ItemSaveData saveData = cGameInfo.Instance.invenData.LoadData(ItemIndex.Gold);
+        int gold = 0;
+        if (saveData != null)
+            gold = saveData.num;
+        _GoldText.text = string.Format(string.Format("Gold : {0}", gold));
+
+    }
+
 }

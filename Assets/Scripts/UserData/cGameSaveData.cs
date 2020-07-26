@@ -30,3 +30,19 @@ public class cGameSaveData
     }
 
 }
+public class ItemSaveData
+{
+    int _num;
+    ItemIndex _itemIndex;
+    public int num
+    {
+        get { return _num; }
+        set {_num = value; }
+    }
+    public ItemIndex itemIndex
+    {
+        get { return _itemIndex; }
+        set { _itemIndex = value; }
+    }
+}
+

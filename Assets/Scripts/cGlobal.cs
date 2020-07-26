@@ -24,3 +24,9 @@ public enum BattleState
     BattleResult,
     Max,
 }
+public enum ItemIndex
+{
+    None,
+    Gold,
+    Max,
+}

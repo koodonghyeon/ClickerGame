@@ -84,8 +84,11 @@
     <Compile Include="Assets\Scripts\Character\cCharacter.cs" />
     <Compile Include="Assets\Scripts\Character\cEnemy.cs" />
     <Compile Include="Assets\Scripts\Character\cHitShader.cs" />
+    <Compile Include="Assets\Scripts\UserData\cDropItem.cs" />
+    <Compile Include="Assets\Scripts\UserData\cDropManager.cs" />
     <Compile Include="Assets\Scripts\UserData\cGameData.cs" />
     <Compile Include="Assets\Scripts\UserData\cGameSaveData.cs" />
+    <Compile Include="Assets\Scripts\UserData\cInvenData.cs" />
     <Compile Include="Assets\Scripts\cDamageText.cs" />
     <Compile Include="Assets\Scripts\cDontDestroy.cs" />
     <Compile Include="Assets\Scripts\cEffect.cs" />
@@ -129,6 +132,8 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexShakeB.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\VertexZoom.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\WarpTextExample.cs" />
+    <Compile Include="Assets\UltraMare\Minimalist Cartoon UI Pack\Scripts\MyCursor.cs" />
+    <Compile Include="Assets\UltraMare\Minimalist Cartoon UI Pack\Scripts\StatsExample.cs" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro.cginc" />
     <None Include="Assets\Hovl Studio\Fantastic cartoon VFX\Shaders\SlashOld.shader" />
     <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Mobile Overlay.shader" />
