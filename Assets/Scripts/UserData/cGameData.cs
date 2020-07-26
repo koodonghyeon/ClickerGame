@@ -14,15 +14,21 @@ public class cGameData
     }
     public void FirstSetting()
     {
+      
     }
     public void SyncTime()
     {
     }
     public void VictoryStage()
     {
-        if (_saveData.maxClearStageIndex < _saveData.currStageIndex)
-            _saveData.maxClearStageIndex = _saveData.currStageIndex;
-        ++_saveData.currStageIndex;
+    
+        if (cGameInfo.Instance.gameData.saveData.maxClearStageIndex < cGameInfo.Instance.gameData.saveData.currStageIndex)
+            cGameInfo.Instance.gameData.saveData.maxClearStageIndex = cGameInfo.Instance.gameData.saveData.currStageIndex;
+        ++cGameInfo.Instance.gameData.saveData.currStageIndex;
+    
+        cGameInfo.Instance.StageData.setCurrntStage(StageIndex.currntStage, _saveData.currStageIndex);
+        cGameInfo.Instance.StageData.setMaxStage(StageIndex.MaxClearStage, _saveData.maxClearStageIndex);
+        cGameScene.Instance.StageRefresh();
     }
 
 

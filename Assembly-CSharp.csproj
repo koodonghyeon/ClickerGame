@@ -84,6 +84,7 @@
     <Compile Include="Assets\Scripts\Character\cCharacter.cs" />
     <Compile Include="Assets\Scripts\Character\cEnemy.cs" />
     <Compile Include="Assets\Scripts\Character\cHitShader.cs" />
+    <Compile Include="Assets\Scripts\Character\cStageData.cs" />
     <Compile Include="Assets\Scripts\UserData\cDropItem.cs" />
     <Compile Include="Assets\Scripts\UserData\cDropManager.cs" />
     <Compile Include="Assets\Scripts\UserData\cGameData.cs" />

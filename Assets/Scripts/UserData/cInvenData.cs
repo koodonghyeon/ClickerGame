@@ -113,7 +113,7 @@ public class cInvenData : MonoBehaviour
             saveData.num += num;
             SaveData(saveData);
         }
-        cGameScene.Instance.Refresh();
+        cGameScene.Instance.GoldRefresh();
     }
     public void UseItem(ItemIndex itemIndex, int num)
     {
@@ -130,7 +130,7 @@ public class cInvenData : MonoBehaviour
         }
         else
             SaveData(saveData);
-        cGameScene.Instance.Refresh();
+        cGameScene.Instance.GoldRefresh();
     }
     public bool IsHaveItem(ItemIndex itemIndex, int num)
     {

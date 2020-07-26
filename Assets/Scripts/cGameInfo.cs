@@ -12,11 +12,15 @@ public class cGameInfo : MonoBehaviour
     private  void Awake()
     {
         instance = this;
+       _gameData = new cGameData();
+       _invenData = new cInvenData();
+       _StageData = new cStageData();
     }
     bool _sycnSaveData;
 
-    cGameData _gameData = new cGameData();
-    cInvenData _invenData = new cInvenData();
+    cGameData _gameData;
+    cInvenData _invenData;
+    cStageData _StageData;
     public bool syncSaveData
     {
         get { return _sycnSaveData; }
@@ -30,6 +34,10 @@ public class cGameInfo : MonoBehaviour
         get { return _invenData; }
     }
 
+    public cStageData StageData
+    {
+        get { return _StageData; }
+    }
     public void FirstSetting()
     {
         _gameData.FirstSetting();

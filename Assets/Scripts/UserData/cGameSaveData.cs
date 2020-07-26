@@ -4,10 +4,16 @@ using System.Collections.Generic;
 public class cGameSaveData 
 {
     int _currStageIndex=1;
-    int _maxClearStageIndex;
+    int _maxClearStageIndex=1;
 
-    float _SaveCurrHP=100;
-    float _SaveMaxHP=100;
+    int _SaveCurrHP=100;
+    int _SaveMaxHP=100;
+    StageIndex _Index;
+    public StageIndex Index
+    {
+        get { return _Index; }
+        set { _Index = value; }
+    }
     public int currStageIndex
     {
         get { return _currStageIndex; }
@@ -18,12 +24,12 @@ public class cGameSaveData
         get { return _maxClearStageIndex; }
         set { _maxClearStageIndex = value; }
     }
-    public float SaveCurrnt
+    public int SaveCurrnt
     {
         get { return _SaveCurrHP; }
         set { _SaveCurrHP = value; }
     }
-    public float SaveMaxHP
+    public int SaveMaxHP
     {
         get { return _SaveMaxHP; }
         set { _SaveMaxHP = value; }

@@ -7,19 +7,19 @@ public class cEnemy : MonoBehaviour
 {
     public GameObject _model;
     Transform _Transform;
-    float _currHp=100;
+    int _currHp;
 
-    float _maxHp=100;
+    int _maxHp;
     cEnemyShaking _Shake;
     cHitShader _Shader;
     Material _material;
    public GameObject _DamageText;
-    public float currHp
+    public int currHp
     {
         get { return _currHp; }
         set { _currHp = value; }
     }
-    public float maxHp
+    public int maxHp
     {
         get { return _maxHp; }
         set {_maxHp = value; }
@@ -39,21 +39,25 @@ public class cEnemy : MonoBehaviour
     }
     public void Init()
     {
-        int currStageIndex = cGameInfo.Instance.gameData.saveData.currStageIndex;
-
+         SetMaxHP();
+       
         if (cGameInfo.Instance.gameData.saveData.currStageIndex % 5 == 0)
-        {
-            cGameInfo.Instance.gameData.saveData.SaveMaxHP *= 5;
-          
-        }
-        else
-        {
-            cGameInfo.Instance.gameData.saveData.SaveMaxHP += 20;
-        }
-        _maxHp = cGameInfo.Instance.gameData.saveData.SaveMaxHP;
-        _currHp = _maxHp;
-        cGameScene.Instance._hptext.text = _currHp.ToString();
+            {
+                cGameInfo.Instance.gameData.saveData.SaveMaxHP *= 5;
+                cGameInfo.Instance.StageData.setMaxHP(StageIndex.MaxHP, (int)cGameInfo.Instance.gameData.saveData.SaveMaxHP);
+            }
+            else
+            {
+                cGameInfo.Instance.gameData.saveData.SaveMaxHP += 20;
+                cGameInfo.Instance.StageData.setMaxHP(StageIndex.MaxHP, (int)cGameInfo.Instance.gameData.saveData.SaveMaxHP);
+            }
+
+        SetCurrntHP();
+
+        if (_maxHp == _currHp)
         cGameScene.Instance._HPBar.value = 1;
+       else
+        cGameScene.Instance._HPBar.value = (float)_currHp / (float)_maxHp;
         _hide = new DelegateEndHide(EndHide);
     }
     public void SetDamage(int damage)
@@ -70,19 +74,54 @@ public class cEnemy : MonoBehaviour
         cGameScene.Instance._hptext.text = _currHp.ToString();
         GameObject DamText = Instantiate(_DamageText);
         DamText.GetComponent<cDamageText>().damage = damage;
+        cGameInfo.Instance.StageData.setCurrntHP(StageIndex.CurrntHP, (int)_currHp);
         if (_currHp <= 0)
         {
+            cGameInfo.Instance.gameData.VictoryStage();
+            PlayerPrefs.DeleteKey(string.Format("StageData_{0}",StageIndex.CurrntHP));
             _currHp = 0;
             _Die = true;
             cSoundManager.Instance.PlayActionSound("Dead");
             _Shader.Hide(_hide);
-            cGameInfo.Instance.gameData.VictoryStage();
+        
             cDropManager.Instance.DropGold(this);
+          
         }
     }
     public void EndHide()
     {
         cGameScene.Instance.battleStateManager.SetState(BattleState.BattleResult);
+    }
+    public void SetCurrntHP()
+    {
+        cGameSaveData saveData = cGameInfo.Instance.StageData.LoadData(StageIndex.CurrntHP);
+        int currntHP = _maxHp;
+        if (saveData != null)
+        {
+            if (saveData.SaveCurrnt <= 0)
+            {
+                saveData.SaveCurrnt = _maxHp;
+                currntHP = _maxHp;
+
+            }
+            else
+                currntHP = saveData.SaveCurrnt;
+        }
+        _currHp = currntHP;
+       cGameScene.Instance._hptext.text = string.Format("{0}", currntHP);
+        
+    }
+    public void SetMaxHP()
+    {
+        cGameSaveData saveData = cGameInfo.Instance.StageData.LoadData(StageIndex.MaxHP);
+        int MaxHP = 100;
+        if (saveData != null)
+        {
+            MaxHP = saveData.SaveMaxHP;
+            cGameInfo.Instance.gameData.saveData.SaveMaxHP = MaxHP;
+        }
+
+        _maxHp = MaxHP;
     }
     public Transform myTransform
     {

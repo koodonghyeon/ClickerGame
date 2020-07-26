@@ -30,3 +30,12 @@ public enum ItemIndex
     Gold,
     Max,
 }
+public enum StageIndex
+{
+    None,
+    currntStage,
+    MaxClearStage,
+    CurrntHP,
+    MaxHP,
+    Max,
+}

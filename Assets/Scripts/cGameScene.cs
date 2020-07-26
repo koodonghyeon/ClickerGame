@@ -39,10 +39,11 @@ public class cGameScene : MonoBehaviour
         _battleStateManager = new cBattleManager();
         _battleStateManager.Init();
         _battleStateManager.SetState(BattleState.BattleReady);
-
+       // PlayerPrefs.DeleteAll();
         _Main = this.GetComponent<Camera>();
         _PlayerDamage = 5;
-        Refresh();
+        GoldRefresh();
+        StageRefresh();
     }
     public void Update()
     {
@@ -63,7 +64,6 @@ public class cGameScene : MonoBehaviour
         if (_enemy == null)
             return;
         _enemy.SetDamage(_PlayerDamage);
-       // Debug.Log(pos);
         Vector3 worldPos = _Main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 0));
         GameObject effectObject = cResourceManager.Instance.ClonePrefab("Hit");
         effectObject.transform.position = worldPos;
@@ -75,7 +75,7 @@ public class cGameScene : MonoBehaviour
         _enemy.SetDamage(attack);
 
     }
-    public void Refresh()
+    public void GoldRefresh()
     {
         ItemSaveData saveData = cGameInfo.Instance.invenData.LoadData(ItemIndex.Gold);
         int gold = 0;
@@ -84,5 +84,17 @@ public class cGameScene : MonoBehaviour
         _GoldText.text = string.Format(string.Format("Gold : {0}", gold));
 
     }
+    public void StageRefresh()
+    {
+        cGameSaveData saveData = cGameInfo.Instance.StageData.LoadData(StageIndex.currntStage);
+        int currntStage = 1;
+        if (saveData != null)
+        {
+            currntStage = saveData.currStageIndex;
+            cGameInfo.Instance.gameData.saveData.maxClearStageIndex = currntStage-1;
+            cGameInfo.Instance.gameData.saveData.currStageIndex = currntStage;
+        }
+       _StageText.text = string.Format(string.Format("Stage {0}", currntStage));
 
+    }
 }
