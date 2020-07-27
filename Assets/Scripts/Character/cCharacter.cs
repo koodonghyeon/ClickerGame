@@ -9,14 +9,16 @@ public class cCharacter : MonoBehaviour
     Transform _myTransform;
     cStateMachineManager _stateMachineManager;
     Animator _animation;
-    int _attack = 10;
+    int _attack=10;
+    int _BasicAttack = 10;
     public float attackSpeed
     {
         get { return _attackSpeed; }
         set { _attackSpeed = value; }
     }
 
-    float _attackSpeed = 1;
+    float _BasicattackSpeed = 1;
+    float _attackSpeed =1;
     public  void Awake()
     {
 
@@ -24,9 +26,13 @@ public class cCharacter : MonoBehaviour
         _stateMachineManager.Init(this);
         _myTransform = transform;
         _animation = GetComponent<Animator>();
+      
     }
     public void Init()
     {
+        //_attack = cGameInfo.Instance.Unit._saveData.UnitAttack;
+        //_attackSpeed = cGameInfo.Instance.Unit._saveData.UnitSpeed;
+       // _BasicattackSpeed -= _attackSpeed;
     }
    public void UpdateFrame()
     {
@@ -95,7 +101,7 @@ public class cCharacter : MonoBehaviour
     }
     public void AttackEvent()
     {
-        cGameScene.Instance.AttackEvent(_attack);
+        cGameScene.Instance.AttackEvent(_attack+ _BasicAttack);
     }
 
 

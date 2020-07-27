@@ -30,12 +30,26 @@ public enum ItemIndex
     Gold,
     Max,
 }
+public enum HPIndex
+{
+    None,
+   
+    CurrntHP,
+    MaxHP,
+    Max,
+}
+public enum UnitStatIndex
+{
+    None,
+
+    Attack,
+    Speed,
+    Max,
+}
 public enum StageIndex
 {
     None,
     currntStage,
     MaxClearStage,
-    CurrntHP,
-    MaxHP,
     Max,
 }

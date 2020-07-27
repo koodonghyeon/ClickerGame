@@ -27,23 +27,24 @@ public class cGameScene : MonoBehaviour
     }
     public Slider _HPBar;
     public Text _hptext;
-    public int _PlayerDamage;
+    public int _PlayerDamage=10;
+   // public int _BasicDamage=10;
     public Text _StageText;
     public Text _GoldText;
     public void Awake()
     {
         instance = this;
-        _character.Init();
         _character.SetState(UnitState.Idle);
 
         _battleStateManager = new cBattleManager();
         _battleStateManager.Init();
         _battleStateManager.SetState(BattleState.BattleReady);
-       // PlayerPrefs.DeleteAll();
+       //PlayerPrefs.DeleteAll();
         _Main = this.GetComponent<Camera>();
-        _PlayerDamage = 5;
-        GoldRefresh();
-        StageRefresh();
+        cGameInfo.Instance.FirstSetting();
+       // _PlayerDamage = cGameInfo.Instance.Unit._saveData.TabDamage;
+        _character.Init();
+  
     }
     public void Update()
     {
@@ -84,17 +85,5 @@ public class cGameScene : MonoBehaviour
         _GoldText.text = string.Format(string.Format("Gold : {0}", gold));
 
     }
-    public void StageRefresh()
-    {
-        cGameSaveData saveData = cGameInfo.Instance.StageData.LoadData(StageIndex.currntStage);
-        int currntStage = 1;
-        if (saveData != null)
-        {
-            currntStage = saveData.currStageIndex;
-            cGameInfo.Instance.gameData.saveData.maxClearStageIndex = currntStage-1;
-            cGameInfo.Instance.gameData.saveData.currStageIndex = currntStage;
-        }
-       _StageText.text = string.Format(string.Format("Stage {0}", currntStage));
 
-    }
 }

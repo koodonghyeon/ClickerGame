@@ -8,7 +8,6 @@ public class cEnemy : MonoBehaviour
     public GameObject _model;
     Transform _Transform;
     int _currHp;
-
     int _maxHp;
     cEnemyShaking _Shake;
     cHitShader _Shader;
@@ -25,7 +24,7 @@ public class cEnemy : MonoBehaviour
         set {_maxHp = value; }
     }
     DelegateEndHide _hide;
-    bool _Die;
+    bool _Die=false;
     private void Awake()
     {
         _Transform = transform;
@@ -39,18 +38,8 @@ public class cEnemy : MonoBehaviour
     }
     public void Init()
     {
-         SetMaxHP();
-       
-        if (cGameInfo.Instance.gameData.saveData.currStageIndex % 5 == 0)
-            {
-                cGameInfo.Instance.gameData.saveData.SaveMaxHP *= 5;
-                cGameInfo.Instance.StageData.setMaxHP(StageIndex.MaxHP, (int)cGameInfo.Instance.gameData.saveData.SaveMaxHP);
-            }
-            else
-            {
-                cGameInfo.Instance.gameData.saveData.SaveMaxHP += 20;
-                cGameInfo.Instance.StageData.setMaxHP(StageIndex.MaxHP, (int)cGameInfo.Instance.gameData.saveData.SaveMaxHP);
-            }
+        SetMaxHP();
+        _maxHp = cGameInfo.Instance.gameData.saveHP.SaveMaxHP;
 
         SetCurrntHP();
 
@@ -74,11 +63,11 @@ public class cEnemy : MonoBehaviour
         cGameScene.Instance._hptext.text = _currHp.ToString();
         GameObject DamText = Instantiate(_DamageText);
         DamText.GetComponent<cDamageText>().damage = damage;
-        cGameInfo.Instance.StageData.setCurrntHP(StageIndex.CurrntHP, (int)_currHp);
+        cGameInfo.Instance.HPData.setCurrntHP(HPIndex.CurrntHP, (int)_currHp);
         if (_currHp <= 0)
         {
             cGameInfo.Instance.gameData.VictoryStage();
-            PlayerPrefs.DeleteKey(string.Format("StageData_{0}",StageIndex.CurrntHP));
+            PlayerPrefs.DeleteKey(string.Format("StageData_{0}",HPIndex.CurrntHP));
             _currHp = 0;
             _Die = true;
             cSoundManager.Instance.PlayActionSound("Dead");
@@ -94,14 +83,14 @@ public class cEnemy : MonoBehaviour
     }
     public void SetCurrntHP()
     {
-        cGameSaveData saveData = cGameInfo.Instance.StageData.LoadData(StageIndex.CurrntHP);
+        cHPData saveData = cGameInfo.Instance.HPData.LoadData(HPIndex.CurrntHP);
         int currntHP = _maxHp;
         if (saveData != null)
         {
             if (saveData.SaveCurrnt <= 0)
             {
                 saveData.SaveCurrnt = _maxHp;
-                currntHP = _maxHp;
+                _maxHp= currntHP;
 
             }
             else
@@ -113,14 +102,25 @@ public class cEnemy : MonoBehaviour
     }
     public void SetMaxHP()
     {
-        cGameSaveData saveData = cGameInfo.Instance.StageData.LoadData(StageIndex.MaxHP);
+        cHPData saveData = cGameInfo.Instance.HPData.LoadData(HPIndex.MaxHP);
         int MaxHP = 100;
         if (saveData != null)
         {
             MaxHP = saveData.SaveMaxHP;
-            cGameInfo.Instance.gameData.saveData.SaveMaxHP = MaxHP;
+            if (cGameInfo.Instance.gameData.saveData.currStageIndex != 1)
+            {
+                if (cGameInfo.Instance.gameData.saveData.currStageIndex % 5 == 0)
+                {
+                    MaxHP *= 5;
+                }
+                else
+                {
+                    MaxHP += 20;
+                }
+            }
+            cGameInfo.Instance.gameData.saveHP.SaveMaxHP = MaxHP;
         }
-
+        cGameInfo.Instance.HPData.setMaxHP(HPIndex.MaxHP, (int)cGameInfo.Instance.gameData.saveHP.SaveMaxHP);
         _maxHp = MaxHP;
     }
     public Transform myTransform
