@@ -27,22 +27,24 @@ public class cGameScene : MonoBehaviour
     }
     public Slider _HPBar;
     public Text _hptext;
-    public int _PlayerDamage;
+    public int _PlayerDamage=10;
+   // public int _BasicDamage=10;
     public Text _StageText;
     public Text _GoldText;
     public void Awake()
     {
         instance = this;
-        _character.Init();
         _character.SetState(UnitState.Idle);
 
         _battleStateManager = new cBattleManager();
         _battleStateManager.Init();
         _battleStateManager.SetState(BattleState.BattleReady);
-
+       //PlayerPrefs.DeleteAll();
         _Main = this.GetComponent<Camera>();
-        _PlayerDamage = 5;
-        Refresh();
+        cGameInfo.Instance.FirstSetting();
+       // _PlayerDamage = cGameInfo.Instance.Unit._saveData.TabDamage;
+        _character.Init();
+  
     }
     public void Update()
     {
@@ -63,7 +65,6 @@ public class cGameScene : MonoBehaviour
         if (_enemy == null)
             return;
         _enemy.SetDamage(_PlayerDamage);
-       // Debug.Log(pos);
         Vector3 worldPos = _Main.ScreenToWorldPoint(new Vector3(pos.x, pos.y, 0));
         GameObject effectObject = cResourceManager.Instance.ClonePrefab("Hit");
         effectObject.transform.position = worldPos;
@@ -75,7 +76,7 @@ public class cGameScene : MonoBehaviour
         _enemy.SetDamage(attack);
 
     }
-    public void Refresh()
+    public void GoldRefresh()
     {
         ItemSaveData saveData = cGameInfo.Instance.invenData.LoadData(ItemIndex.Gold);
         int gold = 0;

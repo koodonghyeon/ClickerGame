@@ -33,10 +33,7 @@ public static class cDontDestroy
         {
             noRemoveManager.AddComponent<cGameInfo>();
         }
-        //if (null == noRemoveManager.GetComponent<cScriptManager>())
-        //{
-        //    noRemoveManager.AddComponent<cScriptManager>();
-        //}
+ 
     }
     static public void CreateInstanceToString<T>(ref T instance, string classMame)
     {

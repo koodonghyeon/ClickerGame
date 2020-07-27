@@ -10,7 +10,7 @@ public class cBattleReady : cBattleMachine
         GameObject enemyObject = cResourceManager.Instance.ClonePrefab("Enemy"+ 1);
         cGameScene.Instance.enemy = enemyObject.GetComponent<cEnemy>();
 
-      cGameScene.Instance._StageText.text = "Stage " + cGameInfo.Instance.gameData.saveData.currStageIndex.ToString();
+        cGameScene.Instance._StageText.text = "Stage " + cGameInfo.Instance.gameData.saveData.currStageIndex.ToString();
         cGameScene.Instance.enemy.Init();
         cGameScene.Instance.battleStateManager.SetState(BattleState.Battle);
     }

@@ -9,6 +9,7 @@ public class cBattleResult : cBattleMachine
       
         Destroy(cGameScene.Instance._enemy.gameObject);
        cGameScene.Instance.battleStateManager.SetState(BattleState.BattleReady);
+ 
     }
     public override void Exit()
     {

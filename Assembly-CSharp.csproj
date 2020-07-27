@@ -80,13 +80,32 @@
     <Compile Include="Assets\Scripts\Character\UnitState\cStateMachine.cs" />
     <Compile Include="Assets\Scripts\Character\UnitState\cStateMachineManager.cs" />
     <Compile Include="Assets\Scripts\Character\cCharacter.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\Character\cHitShader.cs" />
     <Compile Include="Assets\Scripts\UserData\cDropItem.cs" />
     <Compile Include="Assets\Scripts\UserData\cDropManager.cs" />
+=======
+    <Compile Include="Assets\Scripts\Character\cEnemy.cs" />
+    <Compile Include="Assets\Scripts\Character\cEnemyShaking.cs" />
+    <Compile Include="Assets\Scripts\Character\cHitShader.cs" />
+    <Compile Include="Assets\Scripts\UserData\cDropItem.cs" />
+    <Compile Include="Assets\Scripts\UserData\cDropManager.cs" />
+    <Compile Include="Assets\Scripts\UserData\cGameData.cs" />
+    <Compile Include="Assets\Scripts\UserData\cGameInfo.cs" />
+    <Compile Include="Assets\Scripts\UserData\cGameSaveData.cs" />
+    <Compile Include="Assets\Scripts\UserData\cHP.cs" />
+    <Compile Include="Assets\Scripts\UserData\cInvenData.cs" />
+    <Compile Include="Assets\Scripts\UserData\cShopButton.cs" />
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
     <Compile Include="Assets\Scripts\cDamageText.cs" />
     <Compile Include="Assets\Scripts\cEffect.cs" />
+<<<<<<< HEAD
     <Compile Include="Assets\Scripts\cEnemyShaking.cs" />
     <Compile Include="Assets\Scripts\cGameInfo.cs" />
+=======
+    <Compile Include="Assets\Scripts\cGameScene.cs" />
+    <Compile Include="Assets\Scripts\cGlobal.cs" />
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
     <Compile Include="Assets\Scripts\cInputManager.cs" />
     <Compile Include="Assets\Scripts\cResourceManager.cs" />
     <Compile Include="Assets\Scripts\cSoundManager.cs" />
