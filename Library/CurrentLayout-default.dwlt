@@ -74,7 +74,11 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 150
+=======
+  controlID: 63
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -118,11 +122,25 @@ MonoBehaviour:
   m_Position:
     serializedVersion: 2
     x: 0
+<<<<<<< HEAD
     y: 452
     width: 1001
     height: 279
+=======
+<<<<<<< HEAD
+    y: 452
+    width: 1058
+    height: 279
+  m_MinSize: {x: 101, y: 121}
+  m_MaxSize: {x: 4001, y: 4021}
+=======
+    y: 451
+    width: 1053
+    height: 278
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
   m_ActualView: {fileID: 14}
   m_Panes:
   - {fileID: 15}
@@ -153,7 +171,11 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 342}
   m_MaxSize: {x: 8003, y: 8042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 73
+=======
+  controlID: 62
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -171,10 +193,22 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1252
     y: 0
+<<<<<<< HEAD
     width: 284
     height: 731
   m_MinSize: {x: 275, y: 50}
   m_MaxSize: {x: 4000, y: 4000}
+=======
+<<<<<<< HEAD
+    width: 276
+    height: 731
+=======
+    width: 279
+    height: 729
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
+  m_MinSize: {x: 276, y: 71}
+  m_MaxSize: {x: 4001, y: 4021}
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -507,10 +541,24 @@ MonoBehaviour:
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
+<<<<<<< HEAD
     scrollPos: {x: 0, y: 198}
     m_SelectedIDs: da360000
     m_LastClickedID: 14042
     m_ExpandedIDs: 00000000d0360000d2360000d4360000d6360000da360000dc36000000ca9a3b
+=======
+<<<<<<< HEAD
+    scrollPos: {x: 0, y: 226}
+    m_SelectedIDs: aa370000
+    m_LastClickedID: 14250
+    m_ExpandedIDs: 000000003438000036380000383800003a3800003c3800003e38000040380000423800004438000046380000
+=======
+    scrollPos: {x: 0, y: 99}
+    m_SelectedIDs: a0e30000
+    m_LastClickedID: 58272
+    m_ExpandedIDs: 000000003a3800003c3800003e380000423800004438000046380000483800004a3800004c38000000ca9a3b
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -538,7 +586,15 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000d0360000d2360000d4360000d6360000d8360000da360000dc360000
+=======
+<<<<<<< HEAD
+    m_ExpandedIDs: 000000003438000036380000383800003a3800003c3800003e38000040380000423800004438000046380000
+=======
+    m_ExpandedIDs: 000000003a3800003c3800003e38000040380000423800004438000046380000483800004a3800004c380000
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -649,9 +705,19 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 946cffff
       m_LastClickedID: -37740
       m_ExpandedIDs: 328bffff70fbffff6434000086340000
+=======
+      m_SelectedIDs: 
+      m_LastClickedID: 0
+<<<<<<< HEAD
+      m_ExpandedIDs: 5efbffff
+=======
+      m_ExpandedIDs: 0888feff2c8afefff48bfefff491feffac9bfeff70fbffff503500009c350000
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -888,7 +954,15 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.24902433, y: -0.017442878, z: 0.004509016, w: -0.96834856}
     speed: 2
+<<<<<<< HEAD
     m_Value: {x: -0.24901976, y: -0.017442558, z: 0.004508933, w: -0.9683308}
+=======
+<<<<<<< HEAD
+    m_Value: {x: 0.00077031035, y: 0.99888045, z: -0.044090357, w: 0.018552583}
+=======
+    m_Value: {x: -0.14407375, y: 0.021643111, z: -0.0030992527, w: -0.9893254}
+>>>>>>> b0b974f06f4564e1d9eb7441cf66086b615e665a
+>>>>>>> d81c078df5bb928f4346eb1dc8f771459f57f71d
   m_Size:
     m_Target: 497.46887
     speed: 2
