@@ -24,32 +24,3 @@ public enum BattleState
     BattleResult,
     Max,
 }
-public enum ItemIndex
-{
-    None,
-    Gold,
-    Max,
-}
-public enum HPIndex
-{
-    None,
-   
-    CurrntHP,
-    MaxHP,
-    Max,
-}
-public enum UnitStatIndex
-{
-    None,
-
-    Attack,
-    Speed,
-    Max,
-}
-public enum StageIndex
-{
-    None,
-    currntStage,
-    MaxClearStage,
-    Max,
-}
